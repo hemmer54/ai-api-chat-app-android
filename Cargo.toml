@@ -1,0 +1,33 @@
+[workspace]
+members = [".", "crates/chat-core", "mobile"]
+resolver = "2"
+
+[package]
+name = "api-chat-app"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+chat-core = { path = "crates/chat-core" }
+axum = "0.7"
+dotenvy = "0.15"
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "1"
+tokio = { version = "1", features = ["full"] }
+tower-http = { version = "0.5", features = ["fs"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[patch.crates-io]
+async-task = { git = "https://github.com/smol-rs/async-task.git", rev = "b4486cd71e4e94fbda54ce6302444de14f4d190e" }
+# Local future-compatible patch for the upstream proc-macro-error2 warning.
+proc-macro-error2 = { path = "vendor/proc-macro-error2" }
+
+[profile.release]
+opt-level = "z"
+lto = "fat"
+codegen-units = 1
+strip = true
+panic = "abort"

@@ -1,0 +1,24 @@
+# Rust build output
+/target/
+
+# Local secrets and environment files
+.env
+.env.*
+!.env.example
+
+# Android/Gradle generated files
+mobile/android/gradle/.gradle/
+mobile/android/gradle/build/
+mobile/android/gradle/app/build/
+mobile/android/gradle/app/src/main/jniLibs/
+
+# Generated Android artifacts and local screenshots
+*.apk
+*.aab
+*.png
+
+# Editor/OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

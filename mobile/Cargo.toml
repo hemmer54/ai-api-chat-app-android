@@ -1,0 +1,24 @@
+[package]
+name = "api-chat-mobile"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+name = "api_chat_mobile"
+crate-type = ["cdylib", "staticlib", "lib"]
+
+[dependencies]
+chat-core = { path = "../crates/chat-core" }
+gpui-mobile = { git = "https://github.com/itsbalamurali/gpui-mobile", rev = "c7cab3a43970bd5f1e05d907695404ed73fcdc95" }
+gpui = { git = "https://github.com/zed-industries/zed", rev = "5688167d224b5eca54875d49afb8bfd73a07915a", package = "gpui", default-features = false }
+log = "0.4"
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+
+[target.'cfg(target_os = "android")'.dependencies]
+android-activity = { version = "0.6", features = ["native-activity"] }
+android-native-keyring-store = "1.0"
+android_logger = "0.15"
+jni = "0.22"
+keyring-core = "1"
+
